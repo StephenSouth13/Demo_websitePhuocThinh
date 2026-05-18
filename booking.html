@@ -1,0 +1,377 @@
+<!-- booking.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đặt lịch khám</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Be Vietnam Pro',sans-serif;
+    }
+
+    body{
+      background:
+      linear-gradient(rgba(7,20,40,.88),rgba(7,20,40,.88)),
+      url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1974&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+      color:#fff;
+    }
+
+    .booking-container{
+      width:100%;
+      max-width:1200px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .booking-info{
+      padding-right:20px;
+    }
+
+    .booking-info .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(12px);
+      margin-bottom:24px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .booking-info h1{
+      font-size:58px;
+      line-height:1.1;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    .booking-info p{
+      color:rgba(255,255,255,0.75);
+      line-height:1.8;
+      margin-bottom:35px;
+      font-size:16px;
+    }
+
+    .feature-list{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .feature-item{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .feature-icon{
+      width:50px;
+      height:50px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      font-size:18px;
+      box-shadow:0 10px 25px rgba(0,114,255,.35);
+    }
+
+    .feature-item span{
+      font-size:15px;
+      color:#fff;
+      font-weight:500;
+    }
+
+    .booking-card{
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:30px;
+      padding:40px;
+      box-shadow:0 25px 60px rgba(0,0,0,.35);
+    }
+
+    .booking-card h2{
+      font-size:32px;
+      margin-bottom:10px;
+      font-weight:800;
+    }
+
+    .booking-card .sub{
+      color:rgba(255,255,255,0.7);
+      margin-bottom:35px;
+    }
+
+    .form-group{
+      margin-bottom:22px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:10px;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .input-box{
+      position:relative;
+    }
+
+    .input-box i{
+      position:absolute;
+      left:18px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#8ec5ff;
+      font-size:15px;
+    }
+
+    .input-box input,
+    .input-box select,
+    .input-box textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      padding:18px 18px 18px 52px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      font-size:15px;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:.3s;
+    }
+
+    .input-box textarea{
+      min-height:130px;
+      resize:none;
+      padding-top:18px;
+    }
+
+    .input-box input:focus,
+    .input-box select:focus,
+    .input-box textarea:focus{
+      border-color:#3ba7ff;
+      box-shadow:0 0 0 4px rgba(59,167,255,.18);
+    }
+
+    .input-box input::placeholder,
+    .input-box textarea::placeholder{
+      color:rgba(255,255,255,0.45);
+    }
+
+    select option{
+      color:#000;
+    }
+
+    .submit-btn{
+      width:100%;
+      border:none;
+      outline:none;
+      padding:18px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      color:#fff;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.35s;
+      margin-top:10px;
+      box-shadow:0 18px 35px rgba(0,114,255,.35);
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 25px 40px rgba(0,114,255,.45);
+    }
+
+    .bottom-text{
+      text-align:center;
+      margin-top:20px;
+      color:rgba(255,255,255,.55);
+      font-size:13px;
+    }
+
+    @media(max-width:992px){
+      .booking-container{
+        grid-template-columns:1fr;
+      }
+
+      .booking-info{
+        padding-right:0;
+      }
+
+      .booking-info h1{
+        font-size:42px;
+      }
+    }
+
+    @media(max-width:600px){
+      .booking-card{
+        padding:25px;
+      }
+
+      .booking-info h1{
+        font-size:34px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="booking-container">
+
+    <!-- LEFT -->
+    <div class="booking-info">
+      <div class="tag">
+        <i class="fa-solid fa-heart-pulse"></i>
+        Hệ thống đặt lịch chuyên nghiệp
+      </div>
+
+      <h1>
+        Đặt lịch khám<br>
+        nhanh chóng & hiện đại
+      </h1>
+
+      <p>
+        Đặt lịch trực tuyến chỉ trong vài phút. 
+        Chọn bác sĩ, khung giờ và nhận xác nhận ngay lập tức 
+        với giao diện cao cấp chuẩn bệnh viện hiện đại.
+      </p>
+
+      <div class="feature-list">
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <span>Đội ngũ bác sĩ chuyên môn cao</span>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <span>Đặt lịch 24/7 siêu tiện lợi</span>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <span>Bảo mật thông tin tuyệt đối</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="booking-card">
+
+      <h2>Đặt lịch ngay</h2>
+      <p class="sub">
+        Điền thông tin bên dưới để được hỗ trợ nhanh nhất.
+      </p>
+
+      <form>
+
+        <div class="form-group">
+          <label>Họ và tên</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" placeholder="Nhập họ và tên">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Số điện thoại</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" placeholder="Nhập số điện thoại">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" placeholder="Nhập email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Chuyên khoa</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-stethoscope"></i>
+
+            <select>
+              <option>Chọn chuyên khoa</option>
+              <option>Da liễu</option>
+              <option>Răng hàm mặt</option>
+              <option>Tim mạch</option>
+              <option>Nội tổng quát</option>
+              <option>Nhi khoa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ngày khám</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-calendar-days"></i>
+            <input type="date">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú</label>
+
+          <div class="input-box">
+            <i class="fa-solid fa-notes-medical"></i>
+            <textarea placeholder="Mô tả triệu chứng hoặc yêu cầu thêm..."></textarea>
+          </div>
+        </div>
+
+        <button class="submit-btn">
+          <i class="fa-solid fa-calendar-check"></i>
+          Xác nhận đặt lịch
+        </button>
+
+      </form>
+
+      <div class="bottom-text">
+        © 2026 Medical Booking System
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Phước Thịnh Sài Gòn</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ICON -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <!-- SWIPER -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --primary:#00b894;
+      --secondary:#0984e3;
+      --dark:#07111f;
+      --white:#fff;
+      --gray:#8b98a7;
+      --light:#f7fbff;
+      --shadow:0 20px 60px rgba(0,0,0,.08);
+      --radius:28px;
+    }
+
+    body{
+      font-family:'Be Vietnam Pro',sans-serif;
+      background:var(--light);
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1320px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:999;
+      padding:20px 0;
+      transition:.4s;
+      backdrop-filter: blur(16px);
+      background:rgba(7,17,31,.55);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-wrapper{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#fff;
+      font-weight:800;
+      font-size:22px;
+    }
+
+    .logo img{
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      object-fit:cover;
+    }
+
+    .menu{
+      display:flex;
+      gap:38px;
+    }
+
+    .menu a{
+      color:#fff;
+      font-weight:500;
+      transition:.3s;
+      position:relative;
+    }
+
+    .menu a:hover{
+      color:#00e5b0;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;
+      padding:16px 28px;
+      border-radius:18px;
+      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:.4s;
+      box-shadow:0 15px 35px rgba(0,184,148,.3);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(4,10,20,.7),rgba(4,10,20,.7)),
+      url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2000&auto=format&fit=crop')
+      center/cover;
+    }
+
+    .hero-content{
+      max-width:760px;
+      color:#fff;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 20px;
+      border-radius:999px;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.15);
+      margin-bottom:28px;
+      backdrop-filter:blur(12px);
+    }
+
+    .hero h1{
+      font-size:72px;
+      line-height:1.05;
+      font-weight:800;
+      margin-bottom:24px;
+    }
+
+    .hero p{
+      font-size:20px;
+      color:#d6dce5;
+      line-height:1.8;
+      margin-bottom:40px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.25);
+      padding:16px 28px;
+      border-radius:18px;
+      color:#fff;
+      backdrop-filter:blur(10px);
+      transition:.4s;
+    }
+
+    .btn-secondary:hover{
+      background:#fff;
+      color:#000;
+    }
+
+    /* STATS */
+
+    .stats{
+      margin-top:-100px;
+      position:relative;
+      z-index:5;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
+    }
+
+    .stat-card{
+      background:#fff;
+      border-radius:28px;
+      padding:40px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .stat-card h2{
+      font-size:52px;
+      color:var(--primary);
+      margin-bottom:10px;
+    }
+
+    .stat-card p{
+      color:var(--gray);
+      font-weight:500;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:120px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title span{
+      color:var(--primary);
+      font-weight:700;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .section-title h2{
+      font-size:54px;
+      margin-top:14px;
+    }
+
+    /* DOCTORS */
+
+    .doctor-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .doctor-card{
+      background:#fff;
+      border-radius:32px;
+      overflow:hidden;
+      transition:.5s;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    .doctor-card:hover{
+      transform:translateY(-12px);
+    }
+
+    .doctor-image{
+      height:340px;
+      overflow:hidden;
+    }
+
+    .doctor-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:.6s;
+    }
+
+    .doctor-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .doctor-content{
+      padding:30px;
+    }
+
+    .doctor-content h3{
+      font-size:26px;
+      margin-bottom:10px;
+    }
+
+    .doctor-content p{
+      color:var(--gray);
+      margin-bottom:24px;
+    }
+
+    .doctor-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--primary);
+      font-weight:700;
+    }
+
+    /* SERVICES */
+
+    .services{
+      background:#fff;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      padding:40px;
+      border-radius:30px;
+      background:#f8fbff;
+      transition:.4s;
+    }
+
+    .service-card:hover{
+      background:linear-gradient(135deg,#00b894,#0984e3);
+      color:#fff;
+      transform:translateY(-10px);
+    }
+
+    .service-card i{
+      font-size:54px;
+      margin-bottom:24px;
+    }
+
+    .service-card h3{
+      font-size:28px;
+      margin-bottom:14px;
+    }
+
+    .service-card p{
+      line-height:1.8;
+    }
+
+    /* CTA */
+
+    .cta{
+      position:relative;
+      border-radius:40px;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+      url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=2000&auto=format&fit=crop')
+      center/cover;
+      padding:100px;
+      color:#fff;
+      text-align:center;
+    }
+
+    .cta h2{
+      font-size:60px;
+      margin-bottom:24px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      color:#ddd;
+      margin-bottom:40px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#07111f;
+      color:#fff;
+      padding:90px 0 40px;
+      margin-top:120px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:50px;
+    }
+
+    .footer-title{
+      font-size:24px;
+      margin-bottom:24px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .footer-links a{
+      color:#c4cfdb;
+    }
+
+    .copyright{
+      margin-top:60px;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:30px;
+      color:#9db0c3;
+      text-align:center;
+    }
+
+    /* FLOAT */
+
+    .floating-contact{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      z-index:999;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .floating-contact a{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;
+      font-size:24px;
+      box-shadow:0 15px 30px rgba(0,0,0,.2);
+    }
+
+    /* MOBILE */
+
+    @media(max-width:992px){
+
+      .menu{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .section-title h2{
+        font-size:40px;
+      }
+
+      .cta{
+        padding:60px 30px;
+      }
+
+      .cta h2{
+        font-size:40px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .hero{
+        text-align:center;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:38px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+    <div class="container nav-wrapper">
+
+      <a href="#" class="logo">
+        <img src="https://media.phuocthinhsaigon.vn/media/logo/logo-ptsg.webp">
+        <span>Phước Thịnh Sài Gòn</span>
+      </a>
+
+      <nav class="menu">
+        <a href="#">Trang Chủ</a>
+        <a href="#">Giới Thiệu</a>
+        <a href="#">Dịch Vụ</a>
+        <a href="#">Bác Sĩ</a>
+        <a href="#">Liên Hệ</a>
+      </nav>
+
+      <a href="#" class="btn-primary">
+        <i class="fa-solid fa-calendar-check"></i>
+        Đặt lịch
+      </a>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          <i class="fa-solid fa-heart-pulse"></i>
+          Hệ thống y khoa công nghệ cao
+        </div>
+
+        <h1>
+          Chăm sóc sức khỏe chuẩn quốc tế
+        </h1>
+
+        <p>
+          Hệ thống phòng khám hiện đại với đội ngũ bác sĩ chuyên môn cao,
+          công nghệ tiên tiến và trải nghiệm khám chữa bệnh đẳng cấp.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="booking.html" class="btn-primary">
+            <i class="fa-solid fa-calendar-check"></i>
+            Đặt hẹn ngay
+          </a>
+
+          <a href="https://phuocthinhsaigon.vn/kham-chua-benh-dich-vu" class="btn-secondary">
+            Xem dịch vụ
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- STATS -->
+
+  <div class="stats">
+    <div class="container">
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h2>20K+</h2>
+          <p>Bệnh nhân hài lòng</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>120+</h2>
+          <p>Bác sĩ chuyên môn</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>24/7</h2>
+          <p>Hỗ trợ khẩn cấp</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>15+</h2>
+          <p>Năm kinh nghiệm</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCTORS -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-title">
+        <span>Đội ngũ chuyên gia</span>
+        <h2>Bác sĩ nổi bật</h2>
+      </div>
+
+      <div class="doctor-grid">
+
+        <div class="doctor-card">
+
+          <div class="doctor-image">
+            <img src="/image/tran-van-liet_thumb_350.webp">
+          </div>
+
+          <div class="doctor-content">
+            <h3>BS. Trần Văn Liệt</h3>
+            <p>Chuyên khoa ngoại</p>
+
+            <a href="https://phuocthinhsaigon.vn/tran-van-liet" class="doctor-btn">
+              Xem hồ sơ
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="doctor-card">
+
+          <div class="doctor-image">
+            <img src="/image/nguyen-duy-tan_thumb_350.webp">
+          </div>
+
+          <div class="doctor-content">
+            <h3>BS. Nguyễn Duy Tân</h3>
+            <p>Da liễu công nghệ cao</p>
+
+            <a href="https://phuocthinhsaigon.vn/nguyen-duy-tan" class="doctor-btn">
+              Xem hồ sơ
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="doctor-card">
+
+          <div class="doctor-image">
+            <img src="/image/vo-thanh-trung_thumb_350.webp">
+          </div>
+
+          <div class="doctor-content">
+            <h3>BS. Võ Thành Trung</h3>
+            <p>Tai mũi họng</p>
+
+            <a href="https://phuocthinhsaigon.vn/vo-thanh-trung" class="doctor-btn">
+              Xem hồ sơ
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section class="services">
+
+    <div class="container">
+
+      <div class="section-title">
+        <span>Dịch vụ</span>
+        <h2>Hệ thống khám chữa bệnh</h2>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <i class="fa-solid fa-user-doctor"></i>
+          <h3>Khám tổng quát</h3>
+          <p>
+            Hệ thống kiểm tra sức khỏe toàn diện với AI hỗ trợ chẩn đoán.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <h3>Tầm soát ung thư</h3>
+          <p>
+            Công nghệ phát hiện sớm với độ chính xác cao.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <i class="fa-solid fa-truck-medical"></i>
+          <h3>Cấp cứu 24/7</h3>
+          <p>
+            Đội ngũ phản ứng nhanh và hỗ trợ mọi lúc mọi nơi.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="cta">
+
+        <h2>
+          Đặt lịch khám ngay hôm nay
+        </h2>
+
+        <p>
+          Trải nghiệm hệ thống chăm sóc sức khỏe thế hệ mới với công nghệ hiện đại và dịch vụ chuẩn quốc tế.
+        </p>
+
+       <a href="booking.html" class="btn-primary">
+  <i class="fa-solid fa-calendar-check"></i>
+  Đặt lịch ngay
+</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <h3 class="footer-title">
+            Phước Thịnh Sài Gòn
+          </h3>
+
+          <p style="line-height:1.8;color:#c4cfdb;">
+            Hệ thống y khoa hiện đại với công nghệ khám chữa bệnh tiên tiến,
+            mang đến trải nghiệm chăm sóc sức khỏe toàn diện.
+          </p>
+        </div>
+
+        <div>
+
+          <h3 class="footer-title">Liên kết</h3>
+
+          <div class="footer-links">
+            <a href="#">Trang chủ</a>
+            <a href="#">Dịch vụ</a>
+            <a href="#">Bác sĩ</a>
+            <a href="#">Liên hệ</a>
+          </div>
+
+        </div>
+
+        <div>
+
+          <h3 class="footer-title">Liên hệ</h3>
+
+          <div class="footer-links">
+            <a href="#">02733 867 115</a>
+            <a href="#">support@phuocthinh.vn</a>
+            <a href="#">Đồng Tháp, Việt Nam</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © 2026 Phước Thịnh Sài Gòn. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- FLOAT -->
+
+  <div class="floating-contact">
+
+    <a href="#">
+      <i class="fa-brands fa-facebook-messenger"></i>
+    </a>
+
+    <a href="#">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+
+  </div>
+
+  <!-- JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+
+    window.addEventListener("scroll",()=>{
+
+      const nav=document.querySelector(".navbar");
+
+      if(window.scrollY>50){
+        nav.style.background="rgba(7,17,31,.88)";
+      }else{
+        nav.style.background="rgba(7,17,31,.55)";
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
