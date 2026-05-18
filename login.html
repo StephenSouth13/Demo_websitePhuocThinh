@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng Nhập</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Be Vietnam Pro',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+      url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1920&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    /* Glow */
+    .glow{
+      position:absolute;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      background:#0ea5e9;
+      filter:blur(150px);
+      opacity:.25;
+      z-index:0;
+    }
+
+    .glow.one{
+      top:-100px;
+      left:-100px;
+    }
+
+    .glow.two{
+      bottom:-150px;
+      right:-100px;
+      background:#38bdf8;
+    }
+
+    .login-container{
+      position:relative;
+      z-index:2;
+      width:420px;
+      padding:40px;
+      border-radius:28px;
+      backdrop-filter:blur(18px);
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      box-shadow:
+      0 10px 40px rgba(0,0,0,.35),
+      inset 0 0 20px rgba(255,255,255,.05);
+      animation:fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .logo{
+      width:90px;
+      height:90px;
+      margin:auto;
+      margin-bottom:20px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+      box-shadow:0 0 30px rgba(14,165,233,.5);
+    }
+
+    .logo i{
+      color:white;
+      font-size:38px;
+    }
+
+    h1{
+      color:white;
+      text-align:center;
+      font-size:34px;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:rgba(255,255,255,.75);
+      margin-bottom:35px;
+      font-size:15px;
+    }
+
+    .input-group{
+      margin-bottom:22px;
+    }
+
+    .input-group label{
+      display:block;
+      color:white;
+      margin-bottom:10px;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .input-box{
+      position:relative;
+    }
+
+    .input-box input{
+      width:100%;
+      height:58px;
+      border:none;
+      outline:none;
+      border-radius:16px;
+      padding:0 20px 0 55px;
+      background:rgba(255,255,255,.12);
+      color:white;
+      font-size:15px;
+      border:1px solid rgba(255,255,255,.08);
+      transition:.3s;
+    }
+
+    .input-box input:focus{
+      border-color:#38bdf8;
+      background:rgba(255,255,255,.18);
+      box-shadow:0 0 20px rgba(56,189,248,.25);
+    }
+
+    .input-box i{
+      position:absolute;
+      left:20px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#7dd3fc;
+      font-size:18px;
+    }
+
+    input::placeholder{
+      color:rgba(255,255,255,.6);
+    }
+
+    .options{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:28px;
+      color:white;
+      font-size:14px;
+    }
+
+    .options a{
+      color:#7dd3fc;
+      text-decoration:none;
+      transition:.3s;
+    }
+
+    .options a:hover{
+      color:white;
+    }
+
+    .login-btn{
+      width:100%;
+      height:58px;
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+      color:white;
+      font-size:17px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.35s;
+      box-shadow:0 10px 25px rgba(14,165,233,.35);
+    }
+
+    .login-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 15px 35px rgba(14,165,233,.45);
+    }
+
+    .divider{
+      margin:30px 0;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      color:rgba(255,255,255,.55);
+      font-size:14px;
+    }
+
+    .divider::before,
+    .divider::after{
+      content:'';
+      flex:1;
+      height:1px;
+      background:rgba(255,255,255,.15);
+    }
+
+    .social-login{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .social-btn{
+      height:54px;
+      border-radius:16px;
+      border:none;
+      background:rgba(255,255,255,.1);
+      color:white;
+      cursor:pointer;
+      font-size:15px;
+      font-weight:600;
+      transition:.3s;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .social-btn:hover{
+      background:rgba(255,255,255,.18);
+      transform:translateY(-2px);
+    }
+
+    .register{
+      margin-top:30px;
+      text-align:center;
+      color:rgba(255,255,255,.75);
+      font-size:14px;
+    }
+
+    .register a{
+      color:#7dd3fc;
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    .register a:hover{
+      color:white;
+    }
+
+    @media(max-width:500px){
+      .login-container{
+        width:92%;
+        padding:30px 22px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="login-container">
+
+    <div class="logo">
+      <i class="fa-solid fa-heart-pulse"></i>
+    </div>
+
+    <h1>Đăng Nhập</h1>
+    <p class="subtitle">
+      Chào mừng quay trở lại hệ thống đặt lịch khám
+    </p>
+
+    <form>
+
+      <div class="input-group">
+        <label>Email</label>
+
+        <div class="input-box">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" placeholder="Nhập email của bạn">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Mật khẩu</label>
+
+        <div class="input-box">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" placeholder="Nhập mật khẩu">
+        </div>
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox">
+          Ghi nhớ
+        </label>
+
+        <a href="#">Quên mật khẩu?</a>
+      </div>
+
+      <button class="login-btn">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Đăng Nhập
+      </button>
+
+    </form>
+
+    <div class="divider">
+      Hoặc tiếp tục với
+    </div>
+
+    <div class="social-login">
+
+      <button class="social-btn">
+        <i class="fa-brands fa-google"></i>
+        Google
+      </button>
+
+      <button class="social-btn">
+        <i class="fa-brands fa-facebook-f"></i>
+        Facebook
+      </button>
+
+    </div>
+
+    <div class="register">
+      Chưa có tài khoản?
+      <a href="#">Đăng ký ngay</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
